@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            background-color: #ffd1dc;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        h2 {
+            color: #ff69b4;
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        #message {
+            display: none;
+            font-size: 22px;
+            color: #ff1493;
+            margin-top: 20px;
+        }
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
+        .gif-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .hello-kitty {
+            width: 150px;
+            margin-top: 20px;
+        }
+        .flower {
+            position: absolute;
+            width: 30px;
+            animation: float 5s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+    </style>
+</head>
+<body>
+    <h2>Introduce el código secreto</h2>
+    <input type="text" id="codeInput" placeholder="Código">
+    <button onclick="checkCode()">Enviar</button>
+    <p id="message"></p>
+
+    <div class="options" id="options">
+        <button onclick="answerYes()">Sí</button>
+        <button onclick="answerNo()">No</button>
+    </div>
+
+    <div class="gif-container" id="gifContainer">
+        <p>Sabía que ibas a decir que sí, ¡te amo! ❤️</p>
+        <img src="https://media.giphy.com/media/J1gM2hprDAS5u/giphy.gif" alt="Hello Kitty beso" class="hello-kitty">
+    </div>
+
+    <script>
+        function checkCode() {
+            let code = document.getElementById("codeInput").value;
+            if (code === "MIAMOR2025") {
+                document.getElementById("message").innerHTML = "¿Quieres ser mi San Valentín? ❤️";
+                document.getElementById("message").style.display = "block";
+                document.getElementById("options").style.display = "block";
+                createFlowers();
+            } else {
+                alert("Código incorrecto, intenta de nuevo.");
+            }
+        }
+
+        function answerYes() {
+            document.getElementById("options").style.display = "none";
+            document.getElementById("gifContainer").style.display = "block";
+        }
+
+        function answerNo() {
+            alert("¡Eso no es una opción! 🙈");
+        }
+
+        function createFlowers() {
+            for (let i = 0; i < 20; i++) {
+                let flower = document.createElement("img");
+                flower.src = "https://cdn-icons-png.flaticon.com/128/1046/1046784.png"; 
+                flower.classList.add("flower");
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.top = Math.random() * 100 + "vh";
+                flower.style.animationDuration = (Math.random() * 5 + 3) + "s";
+                document.body.appendChild(flower);
+            }
+        }
+    </script>
+</body>
+</html>
